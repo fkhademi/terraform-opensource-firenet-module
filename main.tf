@@ -18,7 +18,7 @@ module "firenet" {
 data "aws_network_interface" "trans_gw" {
   filter {
     name   = "tag:Name"
-    values = ["Aviatrix-eni@avx-${module.firenet.vpc.region}*-transit_eth2"]
+    values = ["Aviatrix-eni@${module.firenet.transit_gateway.gw_name}_eth2"]
   }
   depends_on = [
     module.firenet
