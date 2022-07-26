@@ -1,17 +1,16 @@
 # Transit VPC with firenet enabled
 module "firenet" {
-  source  = "terraform-aviatrix-modules/aws-transit/aviatrix"
-  version = "3.0.1"
+  source  = "terraform-aviatrix-modules/mc-transit/aviatrix"
+  version = "2.1.2"
 
+  cloud                  = "AWS"
   cidr                   = var.cidr
   region                 = var.region
   account                = var.aws_acct_name
   ha_gw                  = false
   enable_transit_firenet = true
   instance_size          = "c5.xlarge"
-  name = "avx-${var.env_name}"
-  prefix = false
-  suffix = false
+  name                   = "avx-${var.env_name}"
 }
 
 # Get the Transit GW LAN interface IP
