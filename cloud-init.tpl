@@ -2,7 +2,7 @@
 # 
 # Download and install a Ubuntu Firewall with a preconfigured ELK dashboard to show firewall logs
 #
-# Inputs: ${hostname} ${domainname} ${gw_lan_ip}
+# Inputs: ${hostname} ${gw_lan_ip}
  
 LOG=/home/ubuntu/log
 
@@ -55,10 +55,6 @@ sudo service nginx restart
 
 echo "$(date) [INFO] configured and started nginx .." >> $LOG
 
-# Add pod ID search domain
-sudo sed -i '$d' /etc/netplan/50-cloud-init.yaml 
-echo "            nameservers:
-                search: [${domainname}]" | sudo tee -a /etc/netplan/50-cloud-init.yaml
 sudo netplan apply
 
 ###
