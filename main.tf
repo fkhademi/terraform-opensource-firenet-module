@@ -47,7 +47,11 @@ module "fw" {
   ssh_key       = var.ssh_key
   public_ip     = true
   instance_size = "t3.large"
-  user_data     = var.user_data
+  user_data     = templatefile("${path.module}/cloud-init/cloud-init.tpl", {
+    hostname  = "fw.${var.domain_name}",
+    gw_lan_ip = data.aws_network_interface.lan.private_ip,
+    pod_id    = "20"
+  })
 }
 
 # Additional LAN interface for the FW
