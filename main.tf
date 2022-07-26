@@ -47,17 +47,7 @@ module "fw" {
   ssh_key       = var.ssh_key
   public_ip     = true
   instance_size = "t3.large"
-  user_data     = data.template_file.cloudconfig.rendered
-}
-
-# Userdata for the firewall
-data "template_file" "cloudconfig" {
-  template = file("${path.module}/cloud-init.tpl")
-  vars = {
-    hostname   = "${var.fw_hostname}.${var.domain_name}"
-    domainname = var.domain_name
-    gw_lan_ip  = data.aws_network_interface.trans_gw.private_ip
-  }
+  user_data     = var.user_data
 }
 
 # Additional LAN interface for the FW
