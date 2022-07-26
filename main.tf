@@ -48,7 +48,7 @@ module "fw" {
   public_ip     = true
   instance_size = "t3.large"
   user_data     = templatefile("${path.module}/cloud-init.tpl", {
-    hostname  = "fw.${var.domain_name}",
+    hostname  = "fw.avxlab.de",
     gw_lan_ip = data.aws_network_interface.trans_gw.private_ip,
     pod_id    = "20"
   })
