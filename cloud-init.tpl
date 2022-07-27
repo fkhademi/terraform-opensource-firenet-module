@@ -89,14 +89,17 @@ sudo ufw allow from 0.0.0.0/0 to any port 22
 sudo ufw allow from 0.0.0.0/0 to any port 80
 sudo ufw allow from 0.0.0.0/0 to any port 81
 sudo ufw allow from 0.0.0.0/0 to any port 82
-#sudo ufw default allow routed
 sudo ufw default deny routed
-#sudo ufw route allow in on ens7 out  on  ens7 from 10.0.0.0/8
-#sudo ufw route deny in on ens7 out  on  ens7 from 10.0.0.0/8 to port 80
-sudo ufw route deny in on ens6 out on ens6 log-all from 10.0.0.0/8 to 10.0.0.0/8 port 80
+
+sudo ufw route allow in on ens6 out on ens6 log-all from 10.0.0.0/8 to 10.0.0.0/8 port 80
+sudo ufw route allow in on ens6 out on ens6 log-all from 172.16.0.0/12 to 10.0.0.0/8
+sudo ufw route allow in on ens6 out on ens6 log-all from 10.0.0.0/8 to 172.16.0.0/12
+sudo ufw route allow in on ens6 out on ens6 log-all from 10.0.0.0/8 to 10.0.0.0/8
 sudo ufw route allow in on ens6 out on ens6 log-all from 10.0.0.0/8 to 10.0.0.0/8 port 22
 sudo ufw route allow in on ens6 out on ens6 log-all from 10.0.0.0/8 to 10.0.0.0/8 port 443
 sudo ufw route allow in on ens6 out on ens5 log-all from 10.0.0.0/8 to 0.0.0.0/0 port 443
+sudo ufw route allow in on ens6 out on ens5 log-all from 10.0.0.0/8 to 0.0.0.0/0 port 80
+
 sudo ufw enable
 sudo ufw logging low
 
